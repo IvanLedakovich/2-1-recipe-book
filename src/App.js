@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.css'
+import Home from './Home'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const pizza = useSelector((state) => state.pizza)
+	const dispatch = useDispatch()
+
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route index element={<Home />} />
+			</Routes>
+		</BrowserRouter>
+	)
 }
 
-export default App;
+export default App
+
+//Redux Example
+
+{
+	/* <> */
+}
+
+{
+	/* <h1>Pizza</h1>
+
+    {pizza.toppings.map((topping) => (
+     <div key={topping}>{topping}</div>
+    ))}
+
+    <button onClick={() => dispatch(addTopping('pepperoni'))}>
+     Add Pepperoni
+    </button>
+   </> */
+}
