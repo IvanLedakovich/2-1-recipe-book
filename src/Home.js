@@ -3,7 +3,6 @@ import bowlReflectionBig from './images/bowlReflectionBig.svg';
 import bowlReflectionSmall from './images/bowlReflectionSmall.svg';
 import pizzaHeader from './images/pizzaHeader.png';
 import searchDefault from './images/seachDefault.svg';
-import RecipeCard from './RecipeCard';
 import RecipiesContainer from './RecipiesContainer';
 
 const Home = () => {

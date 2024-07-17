@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import Home from './Home'
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Home from './Home';
 
 function App() {
-	const pizza = useSelector((state) => state.pizza)
-	const dispatch = useDispatch()
+	const pizza = useSelector((state) => state.pizza);
+	const dispatch = useDispatch();
 
 	return (
 		<BrowserRouter>
@@ -13,10 +13,10 @@ function App() {
 				<Route index element={<Home />} />
 			</Routes>
 		</BrowserRouter>
-	)
+	);
 }
 
-export default App
+export default App;
 
 //Redux Example
 
