@@ -1,17 +1,17 @@
-import bowl from './images/bowl.svg'
-import bowlReflectionBig from './images/bowlReflectionBig.svg'
-import bowlReflectionSmall from './images/bowlReflectionSmall.svg'
-import pizzaHeader from './images/pizzaHeader.png'
-import searchDefault from './images/seachDefault.svg'
-import RecipeCard from './RecipeCard'
-import RecipiesContainer from './RecipiesContainer'
+import bowl from './images/bowl.svg';
+import bowlReflectionBig from './images/bowlReflectionBig.svg';
+import bowlReflectionSmall from './images/bowlReflectionSmall.svg';
+import pizzaHeader from './images/pizzaHeader.png';
+import searchDefault from './images/seachDefault.svg';
+import RecipeCard from './RecipeCard';
+import RecipiesContainer from './RecipiesContainer';
 
 const Home = () => {
 	return (
 		<>
 			<div className="pizzaHeaderContainer">
-				<div id="headerLine" class="headerLineLeft" />
-				<div id="headerLine" class="headerLineRight" />
+				<div id="headerLine" className="headerLineLeft" />
+				<div id="headerLine" className="headerLineRight" />
 				<img className="pizzaHeaderImage" src={pizzaHeader} alt="pizzaHeader" />
 				<div className="headerLogoContainer">
 					<div className="bowlContainer">
@@ -31,11 +31,7 @@ const Home = () => {
 				</div>
 			</div>
 
-			<img
-				className="searchBarDefault"
-				src={searchDefault}
-				alt="searchDefault"
-			/>
+			<img className="searchBarDefault" src={searchDefault} alt="searchDefault" />
 
 			<div className="difficultyContainer">
 				<div className="difficultyButtonDefault">
@@ -53,7 +49,7 @@ const Home = () => {
 			</div>
 			<RecipiesContainer />
 		</>
-	)
-}
+	);
+};
 
-export default Home
+export default Home;
