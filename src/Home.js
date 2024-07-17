@@ -3,7 +3,8 @@ import bowlReflectionBig from './images/bowlReflectionBig.svg'
 import bowlReflectionSmall from './images/bowlReflectionSmall.svg'
 import pizzaHeader from './images/pizzaHeader.png'
 import searchDefault from './images/seachDefault.svg'
-import ProductCard from './ProductCard'
+import RecipeCard from './RecipeCard'
+import RecipiesContainer from './RecipiesContainer'
 
 const Home = () => {
 	return (
@@ -50,7 +51,7 @@ const Home = () => {
 					<h3 className="nunito-sans-normal">Hard</h3>
 				</div>
 			</div>
-			<ProductCard />
+			<RecipiesContainer />
 		</>
 	)
 }

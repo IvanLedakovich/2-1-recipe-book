@@ -1,15 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .just-me-again-down-here-regular {
@@ -37,7 +39,7 @@ code {
 .pizzaHeaderImage {
 	width: 100%;
 	height: 400px;
-	object-fit: cover; /*magic*/
+	object-fit: cover;
 }
 
 .headerLineLeft {
@@ -140,13 +142,30 @@ code {
 	justify-content: center;
 }
 
-.productCardContainer {
-	/* TEMPORARY */
+.RecipiesContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	gap: 2.5em;
 	margin-top: 150px;
 	margin-left: 45px;
+	margin-right: 45px;
+}
 
-	width: 29%;
+.RecipeCard {
+	width: 100%;
 	height: 585px;
 	border-radius: 10px;
 	border: 1.5px solid #000000;
+}
+
+.RecipeCardImage {
+	height: 260px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.RecipeTag {
+	border-radius: 10px;
+	border: 1.5px solid #c65f00;
 }
