@@ -1,11 +1,12 @@
-import bowl from './images/bowl.svg';
-import bowlReflectionBig from './images/bowlReflectionBig.svg';
-import bowlReflectionSmall from './images/bowlReflectionSmall.svg';
-import pizzaHeader from './images/pizzaHeader.png';
-import searchDefault from './images/seachDefault.svg';
-import RecipiesContainer from './RecipiesContainer';
+import React from 'react';
+import bowl from '../images/bowl.svg';
+import bowlReflectionBig from '../images/bowlReflectionBig.svg';
+import bowlReflectionSmall from '../images/bowlReflectionSmall.svg';
+import pizzaHeader from '../images/pizzaHeader.png';
+import searchDefault from '../images/seachDefault.svg';
+import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
 
-const Home = () => {
+const Home: React.FC = () => {
 	return (
 		<>
 			<div className="pizzaHeaderContainer">

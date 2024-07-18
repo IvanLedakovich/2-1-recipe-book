@@ -1,7 +1,8 @@
-import RecipeCardImage from './RecipeCardImage'
-import RecipeTags from './RecipeTags'
+import React from 'react';
+import RecipeCardImage from './RecipeCardImage/RecipeCardImage';
+import RecipeTags from './RecipeCardTags/RecipeCardTags';
 
-const RecipeCard = () => {
+const RecipeCard: React.FC = () => {
 	return (
 		<>
 			<div className="RecipeCard">
@@ -14,7 +15,7 @@ const RecipeCard = () => {
 				</div>
 			</div>
 		</>
-	)
-}
+	);
+};
 
-export default RecipeCard
+export default RecipeCard;

@@ -1,6 +1,7 @@
-import RecipeCard from './RecipeCard'
+import React from 'react';
+import RecipeCard from './RecipeCard/RecipeCard';
 
-const RecipiesContainer = () => {
+const RecipiesContainer: React.FC = () => {
 	return (
 		<div className="RecipiesContainer">
 			<RecipeCard />
@@ -10,7 +11,7 @@ const RecipiesContainer = () => {
 			<RecipeCard />
 			<RecipeCard />
 		</div>
-	)
-}
+	);
+};
 
-export default RecipiesContainer
+export default RecipiesContainer;
