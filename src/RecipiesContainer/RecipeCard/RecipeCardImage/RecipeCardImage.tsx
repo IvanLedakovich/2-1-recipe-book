@@ -1,4 +1,5 @@
 import React from 'react';
+import { recipeCardImage } from '../../../styles/styles';
 
 interface RecipeCardImageProps {
 	imgSrc: string;
@@ -6,7 +7,7 @@ interface RecipeCardImageProps {
 }
 
 const RecipeCardImage: React.FC<RecipeCardImageProps> = ({ imgSrc, pt }) => {
-	return <img className="RecipeCardImage" src={imgSrc} alt="" />;
+	return <img className={recipeCardImage} src={imgSrc} alt="" />;
 };
 
 export default RecipeCardImage;
