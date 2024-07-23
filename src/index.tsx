@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 // import './styles/globals.scss';
-import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { store } from './Redux/store';
+import store from './redux/store';
+import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

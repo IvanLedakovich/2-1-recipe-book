@@ -4,13 +4,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RootState, AppDispatch } from './Redux/store'; // Assuming you have a store.ts file
 import './App.css';
 import Home from './Pages/Home';
+import AxiosRequests from './Axios/AxiosRequests';
 
 function App(): JSX.Element {
-	const pizza = useSelector((state: RootState) => state.pizza);
-	const dispatch: AppDispatch = useDispatch();
-
 	return (
 		<BrowserRouter>
+			<AxiosRequests />
 			<Routes>
 				<Route index element={<Home />} />
 			</Routes>

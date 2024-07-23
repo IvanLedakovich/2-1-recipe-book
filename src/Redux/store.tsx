@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { recipes } from '../data/RecipiesData';
+import recipesReducer from './recipes/reducer';
 
-export const store = configureStore({
+const store = configureStore({
 	reducer: {
-		recipes: recipes.reducer
+		recipes: recipesReducer
 	}
 });
+
+export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
