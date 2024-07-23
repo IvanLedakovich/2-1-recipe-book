@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { recipiesContainer } from '../../src/styles/styles';
 import { fillFully } from '../redux/recipes/actionCreators';
 import RecipeCard from './RecipeCard/RecipeCard';
-import fetchData from '../utils/fetchData';
 
 const RecipiesContainer: React.FC = () => {
 	const recipes = useSelector((state) => state.recipes);
