@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import recipesReducer from './recipes/reducer';
+import { recipesReducer, recipesCountReducer } from './recipes/reducer';
 
 const store = configureStore({
 	reducer: {
-		recipes: recipesReducer
+		recipes: recipesReducer,
+		recipesCount: recipesCountReducer
 	}
 });
 

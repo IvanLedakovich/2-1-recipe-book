@@ -1,11 +1,14 @@
+import axios from 'axios';
 import clsx from 'clsx';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import bowl from '../images/bowl.svg';
 import bowlReflectionBig from '../images/bowlReflectionBig.svg';
 import bowlReflectionSmall from '../images/bowlReflectionSmall.svg';
 import pizzaHeader from '../images/pizzaHeader.png';
 import searchDefault from '../images/seachDefault.svg';
 import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
+import { loadMore, setCount } from '../redux/recipes/actionCreators';
 import {
 	bowlContainer,
 	difficultyButtonDefault,
@@ -21,6 +24,9 @@ import {
 } from '../styles/styles';
 
 const Home: React.FC = () => {
+	const count = useSelector((state) => state.recipesCount);
+	const dispatch = useDispatch();
+
 	return (
 		<>
 			<div className={pizzaHeaderContainer}>
@@ -64,7 +70,18 @@ const Home: React.FC = () => {
 			<RecipiesContainer />
 			<div className={loadMoreButtonBigContainer}>
 				<div className={loadMoreButtonSmallContainer}>
-					<h5 className={clsx('just-me-again-down-here-small', 'text-xl')}>
+					<h5
+						className={clsx('just-me-again-down-here-small', 'text-xl')}
+						onClick={() => {
+							dispatch(setCount(count + 6));
+							console.log(count);
+							axios
+								.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
+								.then((res) => {
+									dispatch(loadMore(res.data.recipes));
+								});
+						}}
+					>
 						Load more
 					</h5>
 				</div>
