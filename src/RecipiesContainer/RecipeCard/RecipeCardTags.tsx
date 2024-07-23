@@ -1,9 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import {
-	recipeTagContainer,
-	recipeTagsContainer
-} from '../../../styles/styles';
+import { recipeTagContainer, recipeTagsContainer } from '../../styles/styles';
 
 const RecipeTags: React.FC = () => {
 	const recipeTags: string[] = ['Pizza', 'Italian'];

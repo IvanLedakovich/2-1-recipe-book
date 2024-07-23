@@ -11,9 +11,9 @@ import {
 	recipeCard,
 	recipeName
 } from '../../styles/styles';
-import RecipeCardImage from './RecipeCardImage/RecipeCardImage';
-import RecipeTags from './RecipeCardTags/RecipeCardTags';
 import Difficulty from './Difficulty/Difficulty';
+import RecipeCardImage from './RecipeCardImage';
+import RecipeTags from './RecipeCardTags';
 
 const RecipeCard: React.FC<{
 	image;
