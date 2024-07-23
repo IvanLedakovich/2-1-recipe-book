@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react';
 import bowl from '../images/bowl.svg';
 import bowlReflectionBig from '../images/bowlReflectionBig.svg';
@@ -6,15 +7,17 @@ import pizzaHeader from '../images/pizzaHeader.png';
 import searchDefault from '../images/seachDefault.svg';
 import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
 import {
-	pizzaHeaderImage,
-	pizzaHeaderContainer,
+	bowlContainer,
+	difficultyButtonDefault,
+	difficultyContainer,
 	headerLineLeft,
 	headerLineRight,
 	headerLogoContainer,
-	bowlContainer,
-	searchBarDefault,
-	difficultyContainer,
-	difficultyButtonDefault
+	loadMoreButtonBigContainer,
+	loadMoreButtonSmallContainer,
+	pizzaHeaderContainer,
+	pizzaHeaderImage,
+	searchBarDefault
 } from '../styles/styles';
 
 const Home: React.FC = () => {
@@ -59,6 +62,13 @@ const Home: React.FC = () => {
 				</div>
 			</div>
 			<RecipiesContainer />
+			<div className={loadMoreButtonBigContainer}>
+				<div className={loadMoreButtonSmallContainer}>
+					<h5 className={clsx('just-me-again-down-here-small', 'text-xl')}>
+						Load more
+					</h5>
+				</div>
+			</div>
 		</>
 	);
 };

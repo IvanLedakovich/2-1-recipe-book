@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pizzaReducer from '../PizzaSlice';
+import { recipes } from '../data/RecipiesData';
 
 export const store = configureStore({
 	reducer: {
-		pizza: pizzaReducer
+		recipes: recipes.reducer
 	}
 });
 

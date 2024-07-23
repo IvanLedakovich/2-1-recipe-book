@@ -191,3 +191,40 @@ export const cookingTimeTextContainer = clsx(
 	'border-[#244FE9]',
 	'ml-auto'
 );
+
+export const cardDifficultyBigContainer = clsx(
+	'flex',
+	'w-[95%]',
+	'h-[6%]',
+	'mx-auto',
+	'mt-[8%]'
+);
+
+export const cardDifficultySmallContainer = clsx(
+	'grid',
+	'w-[20%]',
+	'h-[90%]',
+	'justify-center',
+	'rounded-[10px]',
+	'border-[1.5px]',
+	'border-solid'
+);
+
+export const loadMoreButtonBigContainer = clsx(
+	'grid',
+	'justify-center',
+	'h-[300px]',
+	'items-center'
+);
+
+export const loadMoreButtonSmallContainer = clsx(
+	'grid',
+	'justify-center',
+	'items-center',
+	'w-[200px]',
+	'h-[20%]',
+	'rounded-[10px]',
+	'border-[1.5px]',
+	'border-solid',
+	'border-[#000000]'
+);

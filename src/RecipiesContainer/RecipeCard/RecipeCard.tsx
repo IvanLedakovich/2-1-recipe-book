@@ -3,6 +3,7 @@ import React from 'react';
 import cuisineImage from '../../images/cuisineImage.svg';
 import timerImage from '../../images/timerImage.svg';
 import {
+	cardDifficultyBigContainer,
 	cookingTimeContainer,
 	cookingTimeTextContainer,
 	cuisineContainer,
@@ -12,6 +13,7 @@ import {
 } from '../../styles/styles';
 import RecipeCardImage from './RecipeCardImage/RecipeCardImage';
 import RecipeTags from './RecipeCardTags/RecipeCardTags';
+import Difficulty from './Difficulty/Difficulty';
 
 const RecipeCard: React.FC = () => {
 	return (
@@ -44,6 +46,9 @@ const RecipeCard: React.FC = () => {
 							30 min
 						</h5>
 					</div>
+				</div>
+				<div className={cardDifficultyBigContainer}>
+					<Difficulty />
 				</div>
 			</div>
 		</>
