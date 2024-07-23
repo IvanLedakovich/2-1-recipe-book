@@ -13,8 +13,7 @@ const RecipiesContainer: React.FC = () => {
 				<p>Loading...</p>
 			) : (
 				<>
-					{recipes.map((element) => {
-						console.log('created');
+					{recipes.map((element) => (
 						<RecipeCard
 							key={element.id}
 							image={element.image}
@@ -23,8 +22,8 @@ const RecipiesContainer: React.FC = () => {
 							difficulty={element.difficulty}
 							cuisine={element.cuisine}
 							tags={element.tags}
-						/>;
-					})}
+						/>
+					))}
 				</>
 			)}
 		</div>
