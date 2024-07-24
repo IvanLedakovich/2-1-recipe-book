@@ -5,9 +5,9 @@ import {
 	difficultyContainer
 } from '../../../styles/styles';
 
-const Difficulty = (difficulty) => {
-	difficulty = 'Hard';
-
+const Difficulty: React.FC<{
+	difficulty;
+}> = ({ difficulty }) => {
 	switch (difficulty) {
 		case 'Easy':
 			return (

@@ -8,7 +8,11 @@ import bowlReflectionSmall from '../images/bowlReflectionSmall.svg';
 import pizzaHeader from '../images/pizzaHeader.png';
 import searchDefault from '../images/seachDefault.svg';
 import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
-import { loadMore, setCount } from '../redux/recipes/actionCreators';
+import {
+	fillInitially,
+	loadMore,
+	setCount
+} from '../redux/recipes/actionCreators';
 import {
 	bowlContainer,
 	difficultyButtonDefault,
@@ -20,12 +24,26 @@ import {
 	loadMoreButtonSmallContainer,
 	pizzaHeaderContainer,
 	pizzaHeaderImage,
-	searchBarDefault
+	searchBarDefault,
+	searchInput
 } from '../styles/styles';
 
 const Home: React.FC = () => {
 	const count = useSelector((state) => state.recipesCount);
 	const dispatch = useDispatch();
+
+	const searchRequest = () => {
+		console.log(document.getElementById('searchInput')?.innerHTML);
+		axios
+			.get(
+				`https://dummyjson.com/recipes/search?q=${
+					(document.getElementById('searchInput') as HTMLInputElement).value
+				}`
+			)
+			.then((res) => {
+				dispatch(fillInitially(res.data.recipes));
+			});
+	};
 
 	return (
 		<>
@@ -52,20 +70,43 @@ const Home: React.FC = () => {
 			</div>
 
 			<img className={searchBarDefault} src={searchDefault} alt="searchDefault" />
+			<input
+				type="text"
+				id="searchInput"
+				name="name"
+				className={searchInput}
+				onChange={searchRequest}
+			></input>
 
 			<div className={difficultyContainer}>
-				<div className={difficultyButtonDefault}>
+				<button
+					className={difficultyButtonDefault}
+					onClick={() => {
+						axios.get(`https://dummyjson.com/recipes?limit=6&skip=0`).then((res) => {
+							dispatch(fillInitially(res.data.recipes));
+						});
+					}}
+				>
 					<h3 className="nunito-sans-normal">All</h3>
-				</div>
-				<div className={difficultyButtonDefault}>
+				</button>
+				<button
+					className={difficultyButtonDefault}
+					onClick={() => {
+						axios
+							.get(`https://dummyjson.com/recipes/search?difficulty=Easy`)
+							.then((res) => {
+								dispatch(fillInitially(res.data.recipes.map((element) => {})));
+							});
+					}}
+				>
 					<h3 className="nunito-sans-normal">Easy</h3>
-				</div>
-				<div className={difficultyButtonDefault}>
+				</button>
+				<button className={difficultyButtonDefault}>
 					<h3 className="nunito-sans-normal">Medium</h3>
-				</div>
-				<div className={difficultyButtonDefault}>
+				</button>
+				<button className={difficultyButtonDefault}>
 					<h3 className="nunito-sans-normal">Hard</h3>
-				</div>
+				</button>
 			</div>
 			<RecipiesContainer />
 			<div className={loadMoreButtonBigContainer}>

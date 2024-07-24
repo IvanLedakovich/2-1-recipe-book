@@ -21,13 +21,18 @@ code {
 	color: #ffffff;
 	scale: 5;
 }
+.just-me-again-down-here-regular-no-scale {
+	font-family: 'Just Me Again Down Here', cursive;
+	font-weight: 400;
+	font-style: normal;
+	color: #ffffff;
+}
 
 .just-me-again-down-here-small {
 	font-family: 'Just Me Again Down Here', cursive;
 	font-weight: 400;
 	font-style: normal;
 	color: #000000;
-	font-size: xxx-large;
 }
 
 .nunito-sans-normal {

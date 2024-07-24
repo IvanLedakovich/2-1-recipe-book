@@ -108,7 +108,7 @@ export const difficultyButtonChosen = clsx(
 
 export const recipiesContainer = clsx(
 	'grid',
-	'grid-cols-[repeat(auto-fit,minmax(400px,1fr))]',
+	'grid-cols-[repeat(auto-fit,minmax(400px,453px))]',
 	'gap-[2.5em]',
 	'mt-[150px]',
 	'mx-[45px]'
@@ -227,4 +227,29 @@ export const loadMoreButtonSmallContainer = clsx(
 	'border-[1.5px]',
 	'border-solid',
 	'border-[#000000]'
+);
+
+export const searchInput = clsx(
+	'absolute',
+	'w-[240px]',
+	'h-[35px]',
+	'ml-[6.5%]',
+	'mt-[3.4%]',
+	'rounded-[10px]',
+	'bg-transparent',
+	'border-none',
+	'border-transparent'
+	// WHY IT DOESN'T WORK?
+);
+
+export const goBackButton = clsx(
+	'w-[13%]',
+	'h-[70%]',
+	'rounded-[10px]',
+	'border-[1.5px]',
+	'border-solid',
+	'border-[#000000]',
+	'just-me-again-down-here-regular-no-scale',
+	'text-6xl',
+	'ml-[3%]'
 );

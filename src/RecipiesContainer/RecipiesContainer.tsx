@@ -26,7 +26,7 @@ const RecipiesContainer: React.FC = () => {
 						<RecipeCard
 							key={element.id}
 							image={element.image}
-							name={element.name.substring(0, 27)}
+							name={element.name.substring(0, 26)}
 							cookTimeMinutes={element.cookTimeMinutes}
 							difficulty={element.difficulty}
 							cuisine={element.cuisine.substring(0, 10)}

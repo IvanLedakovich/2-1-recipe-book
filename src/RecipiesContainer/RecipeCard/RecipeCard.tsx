@@ -27,7 +27,7 @@ const RecipeCard: React.FC<{
 		<>
 			<div className={recipeCard}>
 				<RecipeCardImage imgSrc={image} pt="65%" />
-				<RecipeTags />
+				<RecipeTags tags={tags} />
 				<div className={recipeName}>
 					<h3 className={clsx('just-me-again-down-here-small', 'w-auto', 'ml-3')}>
 						{name}
@@ -52,7 +52,7 @@ const RecipeCard: React.FC<{
 					</div>
 				</div>
 				<div className={cardDifficultyBigContainer}>
-					<Difficulty />
+					<Difficulty difficulty={difficulty} />
 				</div>
 			</div>
 		</>
