@@ -322,6 +322,31 @@ export const recipeTagsContainerSinglePage = clsx(
 export const recipeNameSingle = clsx(
 	'absolute',
 	'just-me-again-down-here-regular-no-scale',
-	'text-5xl',
-	'ml-[23%]'
+	'text-7xl',
+	'mt-[2%]'
+);
+
+export const parametersContainer = clsx(
+	'mt-[150px]',
+	'grid',
+	'h-[200px]',
+	'w-[60%]',
+	'grid-cols-1',
+	'grid-rows-4',
+	'gap-[1em]'
+);
+
+export const parameterSinglePage = clsx('flex', 'w-[100%]', 'items-center');
+
+export const parameterName = clsx('nunito-sans-normal', 'ml-[1%]');
+
+export const servingsParameter = clsx(
+	'grid',
+	'w-[10%]',
+	'h-[80%]',
+	'ml-auto',
+	'justify-center',
+	'rounded-[10px]',
+	'border-[1.5px]',
+	'border-solid'
 );
