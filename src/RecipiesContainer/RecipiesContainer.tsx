@@ -25,6 +25,7 @@ const RecipiesContainer: React.FC = () => {
 					{recipes.map((element) => (
 						<RecipeCard
 							key={element.id}
+							id={element.id}
 							image={element.image}
 							name={element.name.substring(0, 26)}
 							cookTimeMinutes={element.cookTimeMinutes}

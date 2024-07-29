@@ -1,6 +1,6 @@
 import axios from 'axios';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import bowl from '../images/bowl.svg';
 import bowlReflectionBig from '../images/bowlReflectionBig.svg';
@@ -31,6 +31,7 @@ import {
 const Home: React.FC = () => {
 	const count = useSelector((state) => state.recipesCount);
 	const dispatch = useDispatch();
+	const [difficultyChosen, setDifficultyChosen] = useState(false);
 
 	const searchRequest = () => {
 		console.log(document.getElementById('searchInput')?.innerHTML);
@@ -82,7 +83,8 @@ const Home: React.FC = () => {
 				<button
 					className={difficultyButtonDefault}
 					onClick={() => {
-						axios.get(`https://dummyjson.com/recipes?limit=6&skip=0`).then((res) => {
+						setDifficultyChosen(false);
+						axios.get(`https://dummyjson.com/recipes`).then((res) => {
 							dispatch(fillInitially(res.data.recipes));
 						});
 					}}
@@ -92,19 +94,47 @@ const Home: React.FC = () => {
 				<button
 					className={difficultyButtonDefault}
 					onClick={() => {
-						axios
-							.get(`https://dummyjson.com/recipes/search?difficulty=Easy`)
-							.then((res) => {
-								dispatch(fillInitially(res.data.recipes.map((element) => {})));
-							});
+						setDifficultyChosen(true);
+
+						axios.get(`https://dummyjson.com/recipes`).then((res) => {
+							dispatch(
+								fillInitially(
+									res.data.recipes.filter((recipe) => recipe.difficulty === 'Easy')
+								)
+							);
+						});
 					}}
 				>
 					<h3 className="nunito-sans-normal">Easy</h3>
 				</button>
-				<button className={difficultyButtonDefault}>
+				<button
+					className={difficultyButtonDefault}
+					onClick={() => {
+						setDifficultyChosen(true);
+						axios.get(`https://dummyjson.com/recipes`).then((res) => {
+							dispatch(
+								fillInitially(
+									res.data.recipes.filter((recipe) => recipe.difficulty === 'Medium')
+								)
+							);
+						});
+					}}
+				>
 					<h3 className="nunito-sans-normal">Medium</h3>
 				</button>
-				<button className={difficultyButtonDefault}>
+				<button
+					className={difficultyButtonDefault}
+					onClick={() => {
+						setDifficultyChosen(true);
+						axios.get(`https://dummyjson.com/recipes`).then((res) => {
+							dispatch(
+								fillInitially(
+									res.data.recipes.filter((recipe) => recipe.difficulty === 'Hard')
+								)
+							);
+						});
+					}}
+				>
 					<h3 className="nunito-sans-normal">Hard</h3>
 				</button>
 			</div>
@@ -112,15 +142,17 @@ const Home: React.FC = () => {
 			<div className={loadMoreButtonBigContainer}>
 				<div className={loadMoreButtonSmallContainer}>
 					<h5
-						className={clsx('just-me-again-down-here-small', 'text-xl')}
+						className={clsx('just-me-again-down-here-small', 'text-5xl')}
 						onClick={() => {
-							dispatch(setCount(count + 6));
-							console.log(count);
-							axios
-								.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
-								.then((res) => {
-									dispatch(loadMore(res.data.recipes));
-								});
+							console.log(difficultyChosen);
+							if (difficultyChosen == false) {
+								dispatch(setCount(count + 6));
+								axios
+									.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
+									.then((res) => {
+										dispatch(loadMore(res.data.recipes));
+									});
+							}
 						}}
 					>
 						Load more

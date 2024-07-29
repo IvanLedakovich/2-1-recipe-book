@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cuisineImage from '../../images/cuisineImage.svg';
 import timerImage from '../../images/timerImage.svg';
 import {
@@ -16,20 +17,30 @@ import RecipeCardImage from './RecipeCardImage';
 import RecipeTags from './RecipeCardTags';
 
 const RecipeCard: React.FC<{
+	id;
 	image;
 	name;
 	cookTimeMinutes;
 	difficulty;
 	cuisine;
 	tags;
-}> = ({ image, name, cookTimeMinutes, difficulty, cuisine, tags }) => {
+}> = ({ id, image, name, cookTimeMinutes, difficulty, cuisine, tags }) => {
 	return (
 		<>
-			<div className={recipeCard}>
+			<Link to={`/recipes/${id}`} className={recipeCard}>
 				<RecipeCardImage imgSrc={image} pt="65%" />
 				<RecipeTags tags={tags} />
 				<div className={recipeName}>
-					<h3 className={clsx('just-me-again-down-here-small', 'w-auto', 'ml-3')}>
+					<h3
+						className={clsx(
+							'just-me-again-down-here-small',
+							'w-auto',
+							'ml-3',
+							'text-5xl',
+							'mt-[4%]',
+							'mb-[2%]'
+						)}
+					>
 						{name}
 					</h3>
 				</div>
@@ -54,7 +65,7 @@ const RecipeCard: React.FC<{
 				<div className={cardDifficultyBigContainer}>
 					<Difficulty difficulty={difficulty} />
 				</div>
-			</div>
+			</Link>
 		</>
 	);
 };

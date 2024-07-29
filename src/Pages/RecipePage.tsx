@@ -19,6 +19,8 @@ import {
 	recipeNameSingle
 } from '../styles/styles';
 
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import Servings from '../components/Servings';
 import bowl from '../images/bowlBlack.svg';
 import cuisineImage from '../images/cuisineImage.svg';
@@ -28,7 +30,12 @@ import timerImage from '../images/timerImage.svg';
 import DifficultyParameterSingle from '../RecipiesContainer/RecipeCard/Difficulty/DifficultyParameterSingle';
 import RecipeTagsSinglePage from '../RecipiesContainer/RecipeCard/RecipeCardTagsSinglePage';
 
-const RecipePage: React.FC<{ id }> = (id) => {
+const RecipePage: React.FC = () => {
+	let { id } = useParams();
+	const recipe = useSelector((state) =>
+		state.recipes.find((recipe) => recipe.id == id)
+	);
+
 	return (
 		<>
 			<div
@@ -40,7 +47,9 @@ const RecipePage: React.FC<{ id }> = (id) => {
 					'items-center'
 				)}
 			>
-				<button className={clsx(goBackButton, 'scale-1')}>Go back</button>
+				<Link to="/">
+					<button className={clsx(goBackButton, 'scale-1')}>Go back</button>
+				</Link>
 
 				<div id="headerLine" className={headerLineLeftSingle} />
 				<div id="headerLine" className={headerLineRightSingle} />
@@ -53,31 +62,25 @@ const RecipePage: React.FC<{ id }> = (id) => {
 			</div>
 			<div className={infoContanerSingle}>
 				<div className={photoContainerSinglePage}>
-					<img
-						className={recipeImageSinglePage}
-						src="https://cdn.dummyjson.com/recipe-images/1.webp"
-						alt="bowl"
-					/>
+					<img className={recipeImageSinglePage} src={recipe.image} alt="bowl" />
 				</div>
 				<div className={infoContainerSinglePage}>
-					<RecipeTagsSinglePage tags={['italian', 'pizza']} />
-					<h1 className={clsx(recipeNameSingle, 'text-6xl')}>
-						Classic Margherita Pizza
-					</h1>
+					<RecipeTagsSinglePage tags={recipe.tags} />
+					<h1 className={clsx(recipeNameSingle, 'text-6xl')}>{recipe.name}</h1>
 					<div className={parametersContainer}>
 						<div className={parameterSinglePage}>
 							<img src={difficulty} />
 							<p className={parameterName}>Level</p>
-							<DifficultyParameterSingle difficulty={'Medium'} />
+							<DifficultyParameterSingle difficulty={recipe.difficulty} />
 						</div>
 						<div className={parameterSinglePage}>
 							<img src={servingPlate} />
 							<p className={parameterName}>Servings</p>
-							<Servings servings={'4'} />
+							<Servings servings={recipe.servings} />
 						</div>
 						<div className={parameterSinglePage}>
 							<img src={cuisineImage} />
-							<p className={parameterName}>Cuisine</p>
+							<p className={parameterName}>{recipe.cuisine}</p>
 							<div className={cuisineNameContainer}>
 								<h5 className={clsx('nunito-sans-normal', 'text-xl', 'text-[#D20C0C]')}>
 									{'Italian'}
@@ -89,7 +92,7 @@ const RecipePage: React.FC<{ id }> = (id) => {
 							<p className={parameterName}>Cooking Time</p>
 							<div className={cookingTimeTextContainer}>
 								<h5 className={clsx('nunito-sans-normal', 'text-xl', 'text-[#244FE9]')}>
-									{'30 min'}
+									{recipe.cookTimeMinutes}
 								</h5>
 							</div>
 						</div>
@@ -104,7 +107,7 @@ const RecipePage: React.FC<{ id }> = (id) => {
 						Instructions
 					</h1>
 					<ol className={clsx('mt-[30px]', 'list-decimal', 'ml-[3%]')}>
-						{['instruction 1', 'instruction 2'].map((instruction) => (
+						{recipe.instructions.map((instruction) => (
 							<li
 								key={instruction}
 								className={clsx('nunito-sans-normal', 'text-xl', 'text-[#000000]')}
@@ -117,7 +120,7 @@ const RecipePage: React.FC<{ id }> = (id) => {
 				<div
 					className={clsx(
 						'w-[45%]',
-						'h-[400px]',
+						'h-fit',
 						'ml-[3%]',
 						'rounded-[10px]',
 						'border-[1.5px]',
@@ -134,13 +137,13 @@ const RecipePage: React.FC<{ id }> = (id) => {
 					>
 						Ingredients
 					</h1>
-					<ul className={clsx('ml-[10%]', 'list-disc', 'mt-[50px]')}>
-						{['instruction 1', 'instruction 2'].map((instruction) => (
+					<ul className={clsx('ml-[10%]', 'list-disc', 'mt-[50px]', 'mb-[50px]')}>
+						{recipe.ingredients.map((ingredient) => (
 							<li
-								key={instruction}
+								key={ingredient}
 								className={clsx('nunito-sans-normal', 'text-xl', 'text-[#000000]')}
 							>
-								{instruction}
+								{ingredient}
 							</li>
 						))}
 					</ul>
