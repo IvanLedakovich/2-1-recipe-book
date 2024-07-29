@@ -248,8 +248,105 @@ export const goBackButton = clsx(
 	'rounded-[10px]',
 	'border-[1.5px]',
 	'border-solid',
-	'border-[#000000]',
+
 	'just-me-again-down-here-regular-no-scale',
 	'text-6xl',
 	'ml-[3%]'
+);
+
+export const headerLineLeftSingle = clsx(
+	'absolute',
+	'h-[3px]',
+	'w-[23%]',
+	'z-10',
+	'bg-black',
+	'ml-[19%]'
+);
+
+export const headerLineRightSingle = clsx(
+	'absolute',
+	'h-[3px]',
+	'w-[40%]',
+	'z-10',
+	'left-[60%]',
+	'bg-black'
+);
+
+export const headerLogoContainerSingle = clsx(
+	'absolute',
+	'w-[38%]',
+	'translate-x-[-5%]',
+	'translate-y-[-50%]',
+	'z-10',
+	'inline-flex',
+	'items-center',
+	'justify-center',
+	'left-[32%]',
+	'top-[12%]'
+);
+
+export const headerTextSingle = clsx(
+	'absolute',
+	'just-me-again-down-here-regular-no-scale',
+	'text-5xl',
+	'ml-[23%]'
+);
+
+export const infoContanerSingle = clsx('flex', 'mt-[40px]', 'h-[600px]');
+
+export const photoContainerSinglePage = clsx(
+	'border-[1.5px]',
+	'border-solid',
+	'border-[#000000]',
+	'w-[45%]',
+	'h-[80%]',
+	'ml-[3%]'
+);
+
+export const recipeImageSinglePage = clsx('h-full', 'w-full', 'object-cover');
+
+export const infoContainerSinglePage = clsx(
+	'w-[45%]',
+	'h-[65%]',
+	'ml-[6%]',
+	'mt-[4%]'
+);
+
+export const recipeTagsContainerSinglePage = clsx(
+	'grid',
+	'grid-cols-4',
+	'grid-rows-1',
+	'gap-[1em]'
+);
+
+export const recipeNameSingle = clsx(
+	'absolute',
+	'just-me-again-down-here-regular-no-scale',
+	'text-7xl',
+	'mt-[2%]'
+);
+
+export const parametersContainer = clsx(
+	'mt-[150px]',
+	'grid',
+	'h-[200px]',
+	'w-[60%]',
+	'grid-cols-1',
+	'grid-rows-4',
+	'gap-[1em]'
+);
+
+export const parameterSinglePage = clsx('flex', 'w-[100%]', 'items-center');
+
+export const parameterName = clsx('nunito-sans-normal', 'ml-[1%]');
+
+export const servingsParameter = clsx(
+	'grid',
+	'w-[10%]',
+	'h-[80%]',
+	'ml-auto',
+	'justify-center',
+	'rounded-[10px]',
+	'border-[1.5px]',
+	'border-solid'
 );
