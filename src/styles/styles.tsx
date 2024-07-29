@@ -248,7 +248,7 @@ export const goBackButton = clsx(
 	'rounded-[10px]',
 	'border-[1.5px]',
 	'border-solid',
-	'border-[#000000]',
+
 	'just-me-again-down-here-regular-no-scale',
 	'text-6xl',
 	'ml-[3%]'

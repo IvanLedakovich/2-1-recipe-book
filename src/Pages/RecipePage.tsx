@@ -96,16 +96,56 @@ const RecipePage: React.FC<{ id }> = (id) => {
 					</div>
 				</div>
 			</div>
-			<div
-				className={clsx(
-					'border-[1.5px]',
-					'border-solid',
-					'border-[#000000]',
-					'w-[45%]',
-					'h-[80%]',
-					'ml-[3%]'
-				)}
-			></div>
+			<div className={infoContanerSingle}>
+				<div className={clsx('w-[45%]', 'h-[400px]', 'ml-[3%]')}>
+					<h1
+						className={clsx('just-me-again-down-here-regular-no-scale', 'text-7xl')}
+					>
+						Instructions
+					</h1>
+					<ol className={clsx('mt-[30px]', 'list-decimal', 'ml-[3%]')}>
+						{['instruction 1', 'instruction 2'].map((instruction) => (
+							<li
+								key={instruction}
+								className={clsx('nunito-sans-normal', 'text-xl', 'text-[#000000]')}
+							>
+								{instruction}
+							</li>
+						))}
+					</ol>
+				</div>
+				<div
+					className={clsx(
+						'w-[45%]',
+						'h-[400px]',
+						'ml-[3%]',
+						'rounded-[10px]',
+						'border-[1.5px]',
+						'border-solid',
+						'border-[#000000]'
+					)}
+				>
+					<h1
+						className={clsx(
+							'just-me-again-down-here-regular-no-scale',
+							'text-7xl',
+							'ml-[5%]'
+						)}
+					>
+						Ingredients
+					</h1>
+					<ul className={clsx('ml-[10%]', 'list-disc', 'mt-[50px]')}>
+						{['instruction 1', 'instruction 2'].map((instruction) => (
+							<li
+								key={instruction}
+								className={clsx('nunito-sans-normal', 'text-xl', 'text-[#000000]')}
+							>
+								{instruction}
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
 		</>
 	);
 };
