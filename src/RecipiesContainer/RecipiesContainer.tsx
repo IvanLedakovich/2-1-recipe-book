@@ -6,14 +6,19 @@ import { fillInitially } from '../redux/recipes/actionCreators';
 import RecipeCard from './RecipeCard/RecipeCard';
 
 const RecipiesContainer: React.FC = () => {
-	const recipes = useSelector((state) => state.recipes);
+	const recipes = useSelector((state: any) => state.recipes);
 
 	const dispatch = useDispatch();
 
 	React.useEffect(() => {
-		axios.get(`https://dummyjson.com/recipes?limit=6&skip=0`).then((res) => {
-			dispatch(fillInitially(res.data.recipes));
-		});
+		axios
+			.get(`https://dummyjson.com/recipes?limit=6&skip=0`)
+			.then((res) => {
+				dispatch(fillInitially(res.data.recipes));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, []);
 
 	return (
@@ -22,7 +27,7 @@ const RecipiesContainer: React.FC = () => {
 				<p>Loading...</p>
 			) : (
 				<>
-					{recipes.map((element) => (
+					{recipes.map((element: any) => (
 						<RecipeCard
 							key={element.id}
 							id={element.id}

@@ -32,8 +32,8 @@ import RecipeTagsSinglePage from '../RecipiesContainer/RecipeCard/RecipeCardTags
 
 const RecipePage: React.FC = () => {
 	let { id } = useParams();
-	const recipe = useSelector((state) =>
-		state.recipes.find((recipe) => recipe.id == id)
+	const recipe = useSelector((state: any) =>
+		state.recipes.find((recipe) => recipe.id === Number(id))
 	);
 
 	return (

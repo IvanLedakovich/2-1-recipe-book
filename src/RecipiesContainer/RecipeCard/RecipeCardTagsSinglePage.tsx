@@ -6,9 +6,6 @@ import {
 } from '../../styles/styles';
 
 const RecipeTagsSinglePage: React.FC<{ tags }> = (tags) => {
-	// const recipeTags: string[] = ['Pizza', 'Italian'];
-	// let tagsTrimmed = tags.tags.slice[4];
-
 	return (
 		<div className={recipeTagsContainerSinglePage}>
 			{tags.tags.slice(0, 4).map((element, i) => (

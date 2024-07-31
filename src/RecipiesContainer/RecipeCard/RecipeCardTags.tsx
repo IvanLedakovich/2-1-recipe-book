@@ -2,10 +2,9 @@ import clsx from 'clsx';
 import React from 'react';
 import { recipeTagContainer, recipeTagsContainer } from '../../styles/styles';
 
-const RecipeTags: React.FC<{ tags }> = (tags) => {
-	// const recipeTags: string[] = ['Pizza', 'Italian'];
-	// let tagsTrimmed = tags.tags.slice[4];
-
+const RecipeCardTags: React.FC<{
+	tags: Array<string>;
+}> = (tags) => {
 	return (
 		<div className={recipeTagsContainer}>
 			{tags.tags.slice(0, 4).map((element, i) => (
@@ -19,4 +18,4 @@ const RecipeTags: React.FC<{ tags }> = (tags) => {
 	);
 };
 
-export default RecipeTags;
+export default RecipeCardTags;

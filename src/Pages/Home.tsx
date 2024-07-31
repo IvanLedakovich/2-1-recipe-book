@@ -2,6 +2,11 @@ import axios from 'axios';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+	getAllRecipesAxios,
+	getSixRecipesAxios,
+	searchRecipesAxios
+} from '../axios/axios';
 import bowl from '../images/bowl.svg';
 import bowlReflectionBig from '../images/bowlReflectionBig.svg';
 import bowlReflectionSmall from '../images/bowlReflectionSmall.svg';
@@ -29,20 +34,31 @@ import {
 } from '../styles/styles';
 
 const Home: React.FC = () => {
-	const count = useSelector((state) => state.recipesCount);
+	const count = useSelector((state: any) => state.recipesCount);
+
 	const dispatch = useDispatch();
 	const [difficultyChosen, setDifficultyChosen] = useState(false);
 
-	const searchRequest = () => {
-		console.log(document.getElementById('searchInput')?.innerHTML);
+	const searchRecipes = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(fillInitially(searchRecipesAxios(e.target.value)));
+	};
+
+	const getAllRecipes = async () => {
+		dispatch(fillInitially(getAllRecipesAxios()));
+	};
+
+	const getRecipesByDifficulty = async (difficulty) => {
+		dispatch(fillInitially(difficulty));
+	};
+
+	const getSixRecipes = async () => {
 		axios
-			.get(
-				`https://dummyjson.com/recipes/search?q=${
-					(document.getElementById('searchInput') as HTMLInputElement).value
-				}`
-			)
+			.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
 			.then((res) => {
-				dispatch(fillInitially(res.data.recipes));
+				dispatch(loadMore(res.data.recipes));
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	};
 
@@ -76,7 +92,7 @@ const Home: React.FC = () => {
 				id="searchInput"
 				name="name"
 				className={searchInput}
-				onChange={searchRequest}
+				onChange={searchRecipes}
 			></input>
 
 			<div className={difficultyContainer}>
@@ -84,9 +100,7 @@ const Home: React.FC = () => {
 					className={difficultyButtonDefault}
 					onClick={() => {
 						setDifficultyChosen(false);
-						axios.get(`https://dummyjson.com/recipes`).then((res) => {
-							dispatch(fillInitially(res.data.recipes));
-						});
+						getAllRecipes();
 					}}
 				>
 					<h3 className="nunito-sans-normal">All</h3>
@@ -95,14 +109,7 @@ const Home: React.FC = () => {
 					className={difficultyButtonDefault}
 					onClick={() => {
 						setDifficultyChosen(true);
-
-						axios.get(`https://dummyjson.com/recipes`).then((res) => {
-							dispatch(
-								fillInitially(
-									res.data.recipes.filter((recipe) => recipe.difficulty === 'Easy')
-								)
-							);
-						});
+						getRecipesByDifficulty('Easy');
 					}}
 				>
 					<h3 className="nunito-sans-normal">Easy</h3>
@@ -111,13 +118,7 @@ const Home: React.FC = () => {
 					className={difficultyButtonDefault}
 					onClick={() => {
 						setDifficultyChosen(true);
-						axios.get(`https://dummyjson.com/recipes`).then((res) => {
-							dispatch(
-								fillInitially(
-									res.data.recipes.filter((recipe) => recipe.difficulty === 'Medium')
-								)
-							);
-						});
+						getRecipesByDifficulty('Medium');
 					}}
 				>
 					<h3 className="nunito-sans-normal">Medium</h3>
@@ -126,13 +127,8 @@ const Home: React.FC = () => {
 					className={difficultyButtonDefault}
 					onClick={() => {
 						setDifficultyChosen(true);
-						axios.get(`https://dummyjson.com/recipes`).then((res) => {
-							dispatch(
-								fillInitially(
-									res.data.recipes.filter((recipe) => recipe.difficulty === 'Hard')
-								)
-							);
-						});
+						axios.get(`https://dummyjson.com/recipes`);
+						getRecipesByDifficulty('Hard');
 					}}
 				>
 					<h3 className="nunito-sans-normal">Hard</h3>
@@ -144,14 +140,9 @@ const Home: React.FC = () => {
 					<h5
 						className={clsx('just-me-again-down-here-small', 'text-5xl')}
 						onClick={() => {
-							console.log(difficultyChosen);
 							if (difficultyChosen == false) {
 								dispatch(setCount(count + 6));
-								axios
-									.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
-									.then((res) => {
-										dispatch(loadMore(res.data.recipes));
-									});
+								getSixRecipes();
 							}
 						}}
 					>
