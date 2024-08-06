@@ -8,23 +8,10 @@ import RecipeCard from './RecipeCard/RecipeCard';
 const RecipiesContainer: React.FC = () => {
 	const recipes = useSelector((state: any) => state.recipes);
 
-	const dispatch = useDispatch();
-
-	React.useEffect(() => {
-		axios
-			.get(`https://dummyjson.com/recipes?limit=6&skip=0`)
-			.then((res) => {
-				dispatch(fillInitially(res.data.recipes));
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}, []);
-
 	return (
 		<div className={recipiesContainer}>
 			{recipes.length === 0 ? (
-				<p>Loading...</p>
+				<p className="mx-auto">There are no such recipes 😓</p>
 			) : (
 				<>
 					{recipes.map((element: any) => (
@@ -32,10 +19,10 @@ const RecipiesContainer: React.FC = () => {
 							key={element.id}
 							id={element.id}
 							image={element.image}
-							name={element.name.substring(0, 26)}
+							name={element.name.substring(0, 23)}
 							cookTimeMinutes={element.cookTimeMinutes}
 							difficulty={element.difficulty}
-							cuisine={element.cuisine.substring(0, 10)}
+							cuisine={element.cuisine.substring(0, 9)}
 							tags={element.tags}
 						/>
 					))}

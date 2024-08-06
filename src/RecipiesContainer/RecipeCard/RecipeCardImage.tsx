@@ -6,7 +6,7 @@ interface RecipeCardImageProps {
 }
 
 const RecipeCardImage: React.FC<RecipeCardImageProps> = ({ imgSrc }) => {
-	return <img className={recipeCardImage} src={imgSrc} alt="" />;
+	return <img className={recipeCardImage} src={imgSrc} />;
 };
 
 export default RecipeCardImage;

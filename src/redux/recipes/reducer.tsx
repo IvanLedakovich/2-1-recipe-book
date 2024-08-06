@@ -23,3 +23,13 @@ export const recipesCountReducer = (state = 6, action) => {
 			return state;
 	}
 };
+
+export const showMoreButtonReducer = (state = true, action) => {
+	switch (action.type) {
+		case a.SET_BOOL:
+			return action.payload;
+
+		default:
+			return state;
+	}
+};

@@ -1,12 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-	BrowserRouter,
-	Route,
-	Routes,
-	useSearchParams
-} from 'react-router-dom';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import RecipePage from './Pages/RecipePage';
 

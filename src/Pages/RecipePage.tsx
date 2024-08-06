@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import {
-	bowlContainer,
+	bowlSinglePage,
 	cookingTimeTextContainer,
 	cuisineNameContainer,
 	goBackButton,
@@ -11,6 +11,7 @@ import {
 	headerTextSingle,
 	infoContainerSinglePage,
 	infoContanerSingle,
+	infoContanerSingleBottom,
 	parameterName,
 	parametersContainer,
 	parameterSinglePage,
@@ -40,7 +41,7 @@ const RecipePage: React.FC = () => {
 		<>
 			<div
 				className={clsx(
-					'mt-[50px]',
+					'm:mt-[50px]',
 					'w-[100%]',
 					'h-[100px]',
 					'grid',
@@ -54,9 +55,7 @@ const RecipePage: React.FC = () => {
 				<div id="headerLine" className={headerLineLeftSingle} />
 				<div id="headerLine" className={headerLineRightSingle} />
 				<div className={headerLogoContainerSingle}>
-					<div className={bowlContainer}>
-						<img className={bowl} src={bowl} alt="bowl" />
-					</div>
+					<img className={clsx(bowlSinglePage)} src={bowl} alt="bowl" />
 					<h2 className={headerTextSingle}>Recipe Book</h2>
 				</div>
 			</div>
@@ -99,14 +98,14 @@ const RecipePage: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className={infoContanerSingle}>
-				<div className={clsx('w-[45%]', 'h-[400px]', 'ml-[3%]')}>
+			<div className={clsx(infoContanerSingleBottom)}>
+				<div className={clsx('m:w-[45%]', 'h-[400px]', 'ml-[3%]')}>
 					<h1
 						className={clsx('just-me-again-down-here-regular-no-scale', 'text-7xl')}
 					>
 						Instructions
 					</h1>
-					<ol className={clsx('mt-[30px]', 'list-decimal', 'ml-[3%]')}>
+					<ol className={clsx('mt-[30px]', 'list-decimal', 'm:ml-[3%]', 'ml-[6%]')}>
 						{recipe.instructions.map((instruction) => (
 							<li
 								key={instruction}
@@ -119,9 +118,12 @@ const RecipePage: React.FC = () => {
 				</div>
 				<div
 					className={clsx(
-						'w-[45%]',
+						'm:w-[45%]',
 						'h-fit',
 						'ml-[3%]',
+						'mr-[3%]',
+						'm:mr-[0]',
+
 						'rounded-[10px]',
 						'border-[1.5px]',
 						'border-solid',
@@ -137,7 +139,15 @@ const RecipePage: React.FC = () => {
 					>
 						Ingredients
 					</h1>
-					<ul className={clsx('ml-[10%]', 'list-disc', 'mt-[50px]', 'mb-[50px]')}>
+					<ul
+						className={clsx(
+							'ml-[10%]',
+							'list-disc',
+							'mt-[50px]',
+							'm:mb-[50px]',
+							'mb-[25px]'
+						)}
+					>
 						{recipe.ingredients.map((ingredient) => (
 							<li
 								key={ingredient}
