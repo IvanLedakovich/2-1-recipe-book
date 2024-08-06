@@ -68,17 +68,17 @@ const RecipePage: React.FC = () => {
 					<h1 className={clsx(recipeNameSingle, 'text-6xl')}>{recipe.name}</h1>
 					<div className={parametersContainer}>
 						<div className={parameterSinglePage}>
-							<img src={difficulty} />
+							<img src={difficulty} alt="" />
 							<p className={parameterName}>Level</p>
 							<DifficultyParameterSingle difficulty={recipe.difficulty} />
 						</div>
 						<div className={parameterSinglePage}>
-							<img src={servingPlate} />
+							<img src={servingPlate} alt="" />
 							<p className={parameterName}>Servings</p>
 							<Servings servings={recipe.servings} />
 						</div>
 						<div className={parameterSinglePage}>
-							<img src={cuisineImage} />
+							<img src={cuisineImage} alt="" />
 							<p className={parameterName}>{recipe.cuisine}</p>
 							<div className={cuisineNameContainer}>
 								<h5 className={clsx('nunito-sans-normal', 'text-xl', 'text-[#D20C0C]')}>
@@ -87,7 +87,7 @@ const RecipePage: React.FC = () => {
 							</div>
 						</div>
 						<div className={parameterSinglePage}>
-							<img src={timerImage} />
+							<img src={timerImage} alt="" />
 							<p className={parameterName}>Cooking Time</p>
 							<div className={cookingTimeTextContainer}>
 								<h5 className={clsx('nunito-sans-normal', 'text-xl', 'text-[#244FE9]')}>

@@ -1,8 +1,6 @@
-import axios from 'axios';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { recipiesContainer } from '../../src/styles/styles';
-import { fillInitially } from '../redux/recipes/actionCreators';
 import RecipeCard from './RecipeCard/RecipeCard';
 
 const RecipiesContainer: React.FC = () => {

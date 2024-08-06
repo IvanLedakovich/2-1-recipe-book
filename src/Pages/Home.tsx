@@ -70,7 +70,7 @@ const Home: React.FC = () => {
 				<div id="headerLine" className={headerLineLeft} />
 				<div id="headerLine" className={headerLineRight} />
 				<div className={logoContainer}>
-					<img className={headerImage} src={bowl} />
+					<img className={headerImage} src={bowl} alt="" />
 					<h1 className={headerText}>Recipe Book</h1>
 				</div>
 			</div>
