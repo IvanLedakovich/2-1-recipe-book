@@ -42,6 +42,8 @@ const Home: React.FC = () => {
 	const [difficultyChosen, setDifficultyChosen] = useState(false);
 	dispatch(showMoreButton(true));
 
+	console.log(showMoreButtonState);
+
 	const searchRecipes = (e: React.ChangeEvent<HTMLInputElement>) => {
 		searchRecipesAxios(e.target.value, dispatchFillInitially);
 		dispatchShowMoreButton(e.target.value ? false : true);
