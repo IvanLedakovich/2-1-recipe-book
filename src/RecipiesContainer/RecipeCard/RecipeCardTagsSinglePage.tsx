@@ -3,18 +3,19 @@ import React from 'react';
 import {
 	recipeTagContainer,
 	recipeTagsContainerSinglePage
-} from '../../styles/styles';
+} from '../../ui/styles';
+import {
+	MAX_TAG_LENGTH_SINGLE_PAGE,
+	MAX_TAGS_PER_RECIPE
+} from '../../utils/constants';
 
-const RecipeTagsSinglePage: React.FC<{ tags }> = (tags) => {
-	// const recipeTags: string[] = ['Pizza', 'Italian'];
-	// let tagsTrimmed = tags.tags.slice[4];
-
+const RecipeTagsSinglePage: React.FC<{ tags: Array<string> }> = ({ tags }) => {
 	return (
 		<div className={recipeTagsContainerSinglePage}>
-			{tags.tags.slice(0, 4).map((element, i) => (
+			{tags.slice(0, MAX_TAGS_PER_RECIPE).map((element, i) => (
 				<div className={recipeTagContainer} key={i}>
 					<h3 className={clsx('nunito-sans-normal', 'text-[#c65f00]')}>
-						{element.substring(0, 11)}
+						{element.substring(0, MAX_TAG_LENGTH_SINGLE_PAGE)}
 					</h3>
 				</div>
 			))}

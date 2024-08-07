@@ -20,3 +20,10 @@ export const setCount = (recipesCount) => {
 		payload: recipesCount
 	};
 };
+
+export const showMoreButton = (boolean) => {
+	return {
+		type: a.SET_BOOL,
+		payload: boolean
+	};
+};

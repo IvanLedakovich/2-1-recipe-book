@@ -1,17 +1,18 @@
 import clsx from 'clsx';
 import React from 'react';
-import { recipeTagContainer, recipeTagsContainer } from '../../styles/styles';
+import { recipeTagContainer, recipeTagsContainer } from '../../ui/styles';
+import {
+	MAX_TAG_LENGTH_HOME_PAGE,
+	MAX_TAGS_PER_RECIPE
+} from '../../utils/constants';
 
-const RecipeTags: React.FC<{ tags }> = (tags) => {
-	// const recipeTags: string[] = ['Pizza', 'Italian'];
-	// let tagsTrimmed = tags.tags.slice[4];
-
+const RecipeCardTags: React.FC<{ tags: Array<string> }> = ({ tags }) => {
 	return (
 		<div className={recipeTagsContainer}>
-			{tags.tags.slice(0, 4).map((element, i) => (
+			{tags.slice(0, MAX_TAGS_PER_RECIPE).map((element, i) => (
 				<div className={recipeTagContainer} key={i}>
 					<h3 className={clsx('nunito-sans-normal', 'text-[#c65f00]')}>
-						{element.substring(0, 11)}
+						{element.substring(0, MAX_TAG_LENGTH_HOME_PAGE)}
 					</h3>
 				</div>
 			))}
@@ -19,4 +20,4 @@ const RecipeTags: React.FC<{ tags }> = (tags) => {
 	);
 };
 
-export default RecipeTags;
+export default RecipeCardTags;

@@ -11,25 +11,25 @@ import {
 	cuisineNameContainer,
 	recipeCard,
 	recipeName
-} from '../../styles/styles';
+} from '../../ui/styles';
 import Difficulty from './Difficulty/Difficulty';
 import RecipeCardImage from './RecipeCardImage';
-import RecipeTags from './RecipeCardTags';
+import RecipeCardTags from './RecipeCardTags';
 
 const RecipeCard: React.FC<{
-	id;
-	image;
-	name;
-	cookTimeMinutes;
-	difficulty;
-	cuisine;
-	tags;
+	id: number;
+	image: string;
+	name: string;
+	cookTimeMinutes: string;
+	difficulty: string;
+	cuisine: string;
+	tags: Array<string>;
 }> = ({ id, image, name, cookTimeMinutes, difficulty, cuisine, tags }) => {
 	return (
 		<>
 			<Link to={`/recipes/${id}`} className={recipeCard}>
-				<RecipeCardImage imgSrc={image} pt="65%" />
-				<RecipeTags tags={tags} />
+				<RecipeCardImage imgSrc={image} />
+				<RecipeCardTags tags={tags} />
 				<div className={recipeName}>
 					<h3
 						className={clsx(

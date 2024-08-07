@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { servingsParameter } from '../styles/styles';
+import { servingsParameter } from '../ui/styles';
 
 const Servings: React.FC<{
 	servings: any;
