@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { cardDifficultySmallContainer } from '../../../styles/styles';
+import { cardDifficultySmallContainer } from '../../../ui/styles';
 
 const Difficulty: React.FC<{
 	difficulty: string;

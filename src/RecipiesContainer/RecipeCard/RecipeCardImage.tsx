@@ -1,5 +1,5 @@
 import React from 'react';
-import { recipeCardImage } from '../../styles/styles';
+import { recipeCardImage } from '../../ui/styles';
 
 interface RecipeCardImageProps {
 	imgSrc: string;

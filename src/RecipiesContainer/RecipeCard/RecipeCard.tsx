@@ -11,7 +11,7 @@ import {
 	cuisineNameContainer,
 	recipeCard,
 	recipeName
-} from '../../styles/styles';
+} from '../../ui/styles';
 import Difficulty from './Difficulty/Difficulty';
 import RecipeCardImage from './RecipeCardImage';
 import RecipeCardTags from './RecipeCardTags';

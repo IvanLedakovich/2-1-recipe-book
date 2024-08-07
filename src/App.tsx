@@ -5,13 +5,13 @@ import Home from './Pages/Home';
 import RecipePage from './Pages/RecipePage';
 
 function App(): JSX.Element {
-	const recipes = useSelector((state) => state.recipes);
+	const recipes = useSelector((state: any) => state.recipes);
 
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route index element={<Home />} />
-				{recipes.map((route, index) => (
+				{recipes.map((index) => (
 					<Route key={index} path="/recipes/:id" element={<RecipePage />} />
 				))}
 			</Routes>

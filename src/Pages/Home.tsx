@@ -7,7 +7,7 @@ import {
 	getSixRecipesAxios,
 	getSixRecipesInitiallyAxios,
 	searchRecipesAxios
-} from '../axios/axios';
+} from '../api/axios';
 import bowl from '../images/bowl.svg';
 import pizzaHeader from '../images/pizzaHeader.png';
 import searchDefault from '../images/seachDefault.svg';
@@ -32,32 +32,41 @@ import {
 	pizzaHeaderImage,
 	searchBarDefault,
 	searchInput
-} from '../styles/styles';
+} from '../ui/styles';
 
 const Home: React.FC = () => {
-	const count = useSelector((state: any) => state.recipesCount);
+	const currentlyCachedRecipesCount = useSelector(
+		(state: any) => state.recipesCount
+	);
 	const showMoreButtonState = useSelector((state: any) => state.showMoreButton);
 
 	const dispatch = useDispatch();
 	const [difficultyChosen, setDifficultyChosen] = useState(false);
-	dispatch(showMoreButton(true));
 
-	console.log(showMoreButtonState);
+	const setDifficultyChosenTrue = () => {
+		setDifficultyChosen(true);
+	};
+
+	const setDifficultyChosenFalse = () => {
+		setDifficultyChosen(false);
+	};
 
 	const searchRecipes = (e: React.ChangeEvent<HTMLInputElement>) => {
 		searchRecipesAxios(e.target.value, dispatchFillInitially);
 		dispatchShowMoreButton(e.target.value ? false : true);
 	};
 
-	const dispatchFillInitially = async (res) => {
+	const dispatchFillInitially = (res) => {
 		dispatch(fillInitially(res));
+		dispatchShowMoreButton(true);
+		dispatch(setCount(6));
 	};
 
-	const dispatchShowMoreButton = async (boolean) => {
+	const dispatchShowMoreButton = (boolean) => {
 		dispatch(showMoreButton(boolean));
 	};
 
-	const dispatchLoadMore = async (res, isEnd: boolean) => {
+	const dispatchLoadMore = (res, isEnd: boolean) => {
 		dispatch(loadMore(res));
 		if (isEnd) dispatchShowMoreButton(false);
 	};
@@ -86,7 +95,6 @@ const Home: React.FC = () => {
 					/>
 					<input
 						type="text"
-						id="searchInput"
 						name="name"
 						className={searchInput}
 						onChange={searchRecipes}
@@ -97,7 +105,7 @@ const Home: React.FC = () => {
 					<button
 						className={difficultyButtonDefault}
 						onClick={() => {
-							setDifficultyChosen(false);
+							setDifficultyChosenFalse();
 							getAllRecipesAxios(dispatchFillInitially);
 							dispatchShowMoreButton(false);
 						}}
@@ -107,7 +115,7 @@ const Home: React.FC = () => {
 					<button
 						className={difficultyButtonDefault}
 						onClick={() => {
-							setDifficultyChosen(true);
+							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Easy', dispatchFillInitially);
 							dispatchShowMoreButton(false);
 						}}
@@ -117,7 +125,7 @@ const Home: React.FC = () => {
 					<button
 						className={difficultyButtonDefault}
 						onClick={() => {
-							setDifficultyChosen(true);
+							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Medium', dispatchFillInitially);
 							dispatchShowMoreButton(false);
 						}}
@@ -127,7 +135,7 @@ const Home: React.FC = () => {
 					<button
 						className={difficultyButtonDefault}
 						onClick={() => {
-							setDifficultyChosen(true);
+							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Hard', dispatchFillInitially);
 							dispatchShowMoreButton(false);
 						}}
@@ -138,22 +146,22 @@ const Home: React.FC = () => {
 			</div>
 			<RecipiesContainer />
 			<div className={loadMoreButtonBigContainer}>
-				{showMoreButtonState === false ? (
-					<></>
-				) : (
+				{showMoreButtonState ? (
 					<div className={loadMoreButtonSmallContainer}>
 						<h5
 							className={clsx('just-me-again-down-here-small', 'text-5xl')}
 							onClick={() => {
-								if (difficultyChosen == false) {
-									dispatch(setCount(count + 6));
-									getSixRecipesAxios(count, dispatchLoadMore);
+								if (!difficultyChosen) {
+									dispatch(setCount(currentlyCachedRecipesCount + 6));
+									getSixRecipesAxios(currentlyCachedRecipesCount, dispatchLoadMore);
 								}
 							}}
 						>
 							Load more
 						</h5>
 					</div>
+				) : (
+					<></>
 				)}
 			</div>
 		</>
