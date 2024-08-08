@@ -33,3 +33,13 @@ export const showMoreButtonReducer = (state = true, action) => {
 			return state;
 	}
 };
+
+export const recipesLoadedReducer = (state = false, action) => {
+	switch (action.type) {
+		case a.SET_BOOL:
+			return action.payload;
+
+		default:
+			return state;
+	}
+};

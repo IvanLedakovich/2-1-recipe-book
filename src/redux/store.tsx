@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
 	recipesCountReducer,
+	recipesLoadedReducer,
 	recipesReducer,
 	showMoreButtonReducer
 } from './recipes/reducer';
@@ -9,7 +10,8 @@ const store = configureStore({
 	reducer: {
 		recipes: recipesReducer,
 		recipesCount: recipesCountReducer,
-		showMoreButton: showMoreButtonReducer
+		showMoreButton: showMoreButtonReducer,
+		recipesLoaded: recipesLoadedReducer
 	}
 });
 

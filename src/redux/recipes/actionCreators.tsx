@@ -27,3 +27,10 @@ export const showMoreButton = (boolean) => {
 		payload: boolean
 	};
 };
+
+export const recipesLoaded = (boolean) => {
+	return {
+		type: a.SET_BOOL,
+		payload: boolean
+	};
+};
