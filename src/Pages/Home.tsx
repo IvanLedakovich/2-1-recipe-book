@@ -15,6 +15,7 @@ import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
 import {
 	fillInitially,
 	loadMore,
+	recipesLoaded,
 	setCount,
 	showMoreButton
 } from '../redux/recipes/actionCreators';
@@ -33,6 +34,7 @@ import {
 	searchBarDefault,
 	searchInput
 } from '../ui/styles';
+import { NUMBER_OF_RECIPES_LOADED_AT_ONCE } from '../utils/constants';
 
 const Home: React.FC = () => {
 	const currentlyCachedRecipesCount = useSelector(
@@ -51,15 +53,17 @@ const Home: React.FC = () => {
 		setDifficultyChosen(false);
 	};
 
-	const searchRecipes = (e: React.ChangeEvent<HTMLInputElement>) => {
-		searchRecipesAxios(e.target.value, dispatchFillInitially);
-		dispatchShowMoreButton(e.target.value ? false : true);
-	};
-
 	const dispatchFillInitially = (res) => {
 		dispatch(fillInitially(res));
 		dispatchShowMoreButton(true);
-		dispatch(setCount(6));
+		dispatch(setCount(NUMBER_OF_RECIPES_LOADED_AT_ONCE));
+	};
+
+	const searchRecipes = (e: React.ChangeEvent<HTMLInputElement>) => {
+		searchRecipesAxios(e.target.value, dispatchFillInitially);
+	};
+	const dispatchRecipesLoaded = (boolean) => {
+		dispatch(recipesLoaded(boolean));
 	};
 
 	const dispatchShowMoreButton = (boolean) => {
@@ -108,6 +112,7 @@ const Home: React.FC = () => {
 							setDifficultyChosenFalse();
 							getAllRecipesAxios(dispatchFillInitially);
 							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
 						}}
 					>
 						<h3 className="nunito-sans-normal">All</h3>
@@ -118,6 +123,7 @@ const Home: React.FC = () => {
 							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Easy', dispatchFillInitially);
 							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
 						}}
 					>
 						<h3 className="nunito-sans-normal">Easy</h3>
@@ -128,6 +134,7 @@ const Home: React.FC = () => {
 							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Medium', dispatchFillInitially);
 							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
 						}}
 					>
 						<h3 className="nunito-sans-normal">Medium</h3>
@@ -138,6 +145,7 @@ const Home: React.FC = () => {
 							setDifficultyChosenTrue();
 							getRecipesByDifficultyAxios('Hard', dispatchFillInitially);
 							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
 						}}
 					>
 						<h3 className="nunito-sans-normal">Hard</h3>
@@ -152,7 +160,11 @@ const Home: React.FC = () => {
 							className={clsx('just-me-again-down-here-small', 'text-5xl')}
 							onClick={() => {
 								if (!difficultyChosen) {
-									dispatch(setCount(currentlyCachedRecipesCount + 6));
+									dispatch(
+										setCount(
+											currentlyCachedRecipesCount + NUMBER_OF_RECIPES_LOADED_AT_ONCE
+										)
+									);
 									getSixRecipesAxios(currentlyCachedRecipesCount, dispatchLoadMore);
 								}
 							}}

@@ -113,7 +113,8 @@ export const recipiesContainer = clsx(
 	'grid-cols-[repeat(auto-fit,minmax(410px,auto))]',
 	'gap-[2.5em]',
 	'mt-[50px]',
-	'mx-[45px]'
+	'mx-[45px]',
+	'xl:grid-cols-3'
 );
 
 export const recipeCard = clsx(
@@ -122,7 +123,8 @@ export const recipeCard = clsx(
 	'rounded-[10px]',
 	'border-[1.5px]',
 	'border-solid',
-	'border-black'
+	'border-black',
+	'xl:h-[685px]'
 );
 
 export const recipeCardImage = clsx(
