@@ -2,14 +2,15 @@ import clsx from 'clsx';
 import React from 'react';
 import { cardDifficultySmallContainer } from '../../../ui/styles';
 
-const Difficulty: React.FC<{
+const DifficultyParameterSingle: React.FC<{
 	difficulty: string;
 }> = ({ difficulty }) => {
 	const DifficultyStyles = {
 		Easy: clsx(
 			cardDifficultySmallContainer,
 			'border-[#168914]',
-			'bg-[#03b1001f]'
+			'bg-[#03b1001f]',
+			'ml-auto'
 		),
 
 		EasyText: clsx('nunito-sans-normal', 'text-xl', 'text-[#168914]'),
@@ -17,7 +18,8 @@ const Difficulty: React.FC<{
 		Medium: clsx(
 			cardDifficultySmallContainer,
 			'border-[#C65F00]',
-			'bg-[#ff99001a]'
+			'bg-[#ff99001a]',
+			'ml-auto'
 		),
 
 		MediumText: clsx('nunito-sans-normal', 'text-xl', 'text-[#C65F00]'),
@@ -25,7 +27,8 @@ const Difficulty: React.FC<{
 		Hard: clsx(
 			cardDifficultySmallContainer,
 			'border-[#D20C0C]',
-			'bg-[#d20c0c1b]'
+			'bg-[#d20c0c1b]',
+			'ml-auto'
 		),
 
 		HardText: clsx('nunito-sans-normal', 'text-xl', 'text-[#D20C0C]')
@@ -38,4 +41,4 @@ const Difficulty: React.FC<{
 	);
 };
 
-export default Difficulty;
+export default DifficultyParameterSingle;

@@ -1,131 +1,180 @@
-import axios from 'axios';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+	getAllRecipesAxios,
+	getRecipesByDifficultyAxios,
+	getSixRecipesAxios,
+	getSixRecipesInitiallyAxios,
+	searchRecipesAxios
+} from '../api/axios';
 import bowl from '../images/bowl.svg';
-import bowlReflectionBig from '../images/bowlReflectionBig.svg';
-import bowlReflectionSmall from '../images/bowlReflectionSmall.svg';
 import pizzaHeader from '../images/pizzaHeader.png';
 import searchDefault from '../images/seachDefault.svg';
 import RecipiesContainer from '../RecipiesContainer/RecipiesContainer';
 import {
 	fillInitially,
 	loadMore,
-	setCount
+	recipesLoaded,
+	setCount,
+	showMoreButton
 } from '../redux/recipes/actionCreators';
 import {
-	bowlContainer,
 	difficultyButtonDefault,
 	difficultyContainer,
+	headerImage,
 	headerLineLeft,
 	headerLineRight,
-	headerLogoContainer,
+	headerText,
 	loadMoreButtonBigContainer,
 	loadMoreButtonSmallContainer,
+	logoContainer,
 	pizzaHeaderContainer,
 	pizzaHeaderImage,
 	searchBarDefault,
 	searchInput
-} from '../styles/styles';
+} from '../ui/styles';
+import { NUMBER_OF_RECIPES_LOADED_AT_ONCE } from '../utils/constants';
 
 const Home: React.FC = () => {
-	const count = useSelector((state) => state.recipesCount);
-	const dispatch = useDispatch();
+	const currentlyCachedRecipesCount = useSelector(
+		(state: any) => state.recipesCount
+	);
+	const showMoreButtonState = useSelector((state: any) => state.showMoreButton);
 
-	const searchRequest = () => {
-		console.log(document.getElementById('searchInput')?.innerHTML);
-		axios
-			.get(
-				`https://dummyjson.com/recipes/search?q=${
-					(document.getElementById('searchInput') as HTMLInputElement).value
-				}`
-			)
-			.then((res) => {
-				dispatch(fillInitially(res.data.recipes));
-			});
+	const dispatch = useDispatch();
+	const [difficultyChosen, setDifficultyChosen] = useState(false);
+
+	const setDifficultyChosenTrue = () => {
+		setDifficultyChosen(true);
+	};
+
+	const setDifficultyChosenFalse = () => {
+		setDifficultyChosen(false);
+	};
+
+	const dispatchFillInitially = (res) => {
+		dispatch(fillInitially(res));
+		dispatchShowMoreButton(true);
+		dispatch(setCount(NUMBER_OF_RECIPES_LOADED_AT_ONCE));
+	};
+
+	const searchRecipes = (e: React.ChangeEvent<HTMLInputElement>) => {
+		searchRecipesAxios(e.target.value, dispatchFillInitially);
+	};
+	const dispatchRecipesLoaded = (boolean) => {
+		dispatch(recipesLoaded(boolean));
+	};
+
+	const dispatchShowMoreButton = (boolean) => {
+		dispatch(showMoreButton(boolean));
+	};
+
+	const dispatchLoadMore = (res, isEnd: boolean) => {
+		dispatch(loadMore(res));
+		if (isEnd) dispatchShowMoreButton(false);
 	};
 
 	return (
 		<>
-			<div className={pizzaHeaderContainer}>
+			<img className={pizzaHeaderImage} src={pizzaHeader} alt="pizzaHeader" />
+			<div
+				className={pizzaHeaderContainer}
+				onLoad={() => getSixRecipesInitiallyAxios(dispatchFillInitially)}
+			>
 				<div id="headerLine" className={headerLineLeft} />
 				<div id="headerLine" className={headerLineRight} />
-				<img className={pizzaHeaderImage} src={pizzaHeader} alt="pizzaHeader" />
-				<div className={headerLogoContainer}>
-					<div className={bowlContainer}>
-						<img className={bowl} src={bowl} alt="bowl" />
-						<img
-							className={bowlReflectionBig}
-							src={bowlReflectionBig}
-							alt="bowlReflectionBig"
-						/>
-						<img
-							className={bowlReflectionSmall}
-							src={bowlReflectionSmall}
-							alt="bowlReflectionSmall"
-						/>
-					</div>
-					<h1 className="just-me-again-down-here-regular">Recipe Book</h1>
+				<div className={logoContainer}>
+					<img className={headerImage} src={bowl} alt="" />
+					<h1 className={headerText}>Recipe Book</h1>
 				</div>
 			</div>
 
-			<img className={searchBarDefault} src={searchDefault} alt="searchDefault" />
-			<input
-				type="text"
-				id="searchInput"
-				name="name"
-				className={searchInput}
-				onChange={searchRequest}
-			></input>
+			<div className={clsx('flex', 'w-[90%]', 'ml-[5%]', 'flex-wrap')}>
+				<div className={clsx('flex', 'w-[400px]', 'mt-[50px]', 'left-[3%]')}>
+					<img
+						className={searchBarDefault}
+						src={searchDefault}
+						alt="searchDefault"
+					/>
+					<input
+						type="text"
+						name="name"
+						className={searchInput}
+						onChange={searchRecipes}
+					></input>
+				</div>
 
-			<div className={difficultyContainer}>
-				<button
-					className={difficultyButtonDefault}
-					onClick={() => {
-						axios.get(`https://dummyjson.com/recipes?limit=6&skip=0`).then((res) => {
-							dispatch(fillInitially(res.data.recipes));
-						});
-					}}
-				>
-					<h3 className="nunito-sans-normal">All</h3>
-				</button>
-				<button
-					className={difficultyButtonDefault}
-					onClick={() => {
-						axios
-							.get(`https://dummyjson.com/recipes/search?difficulty=Easy`)
-							.then((res) => {
-								dispatch(fillInitially(res.data.recipes.map((element) => {})));
-							});
-					}}
-				>
-					<h3 className="nunito-sans-normal">Easy</h3>
-				</button>
-				<button className={difficultyButtonDefault}>
-					<h3 className="nunito-sans-normal">Medium</h3>
-				</button>
-				<button className={difficultyButtonDefault}>
-					<h3 className="nunito-sans-normal">Hard</h3>
-				</button>
+				<div className={clsx(difficultyContainer, 'm:ml-auto')}>
+					<button
+						className={difficultyButtonDefault}
+						onClick={() => {
+							setDifficultyChosenFalse();
+							getAllRecipesAxios(dispatchFillInitially);
+							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
+						}}
+					>
+						<h3 className="nunito-sans-normal">All</h3>
+					</button>
+					<button
+						className={difficultyButtonDefault}
+						onClick={() => {
+							setDifficultyChosenTrue();
+							getRecipesByDifficultyAxios('Easy', dispatchFillInitially);
+							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
+						}}
+					>
+						<h3 className="nunito-sans-normal">Easy</h3>
+					</button>
+					<button
+						className={difficultyButtonDefault}
+						onClick={() => {
+							setDifficultyChosenTrue();
+							getRecipesByDifficultyAxios('Medium', dispatchFillInitially);
+							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
+						}}
+					>
+						<h3 className="nunito-sans-normal">Medium</h3>
+					</button>
+					<button
+						className={difficultyButtonDefault}
+						onClick={() => {
+							setDifficultyChosenTrue();
+							getRecipesByDifficultyAxios('Hard', dispatchFillInitially);
+							dispatchShowMoreButton(false);
+							dispatchRecipesLoaded(true);
+						}}
+					>
+						<h3 className="nunito-sans-normal">Hard</h3>
+					</button>
+				</div>
 			</div>
 			<RecipiesContainer />
 			<div className={loadMoreButtonBigContainer}>
-				<div className={loadMoreButtonSmallContainer}>
-					<h5
-						className={clsx('just-me-again-down-here-small', 'text-xl')}
-						onClick={() => {
-							dispatch(setCount(count + 6));
-							console.log(count);
-							axios
-								.get(`https://dummyjson.com/recipes?limit=6&skip=${count}`)
-								.then((res) => {
-									dispatch(loadMore(res.data.recipes));
-								});
-						}}
-					>
-						Load more
-					</h5>
-				</div>
+				{showMoreButtonState ? (
+					<div className={loadMoreButtonSmallContainer}>
+						<h5
+							className={clsx('just-me-again-down-here-small', 'text-5xl')}
+							onClick={() => {
+								if (!difficultyChosen) {
+									dispatch(
+										setCount(
+											currentlyCachedRecipesCount + NUMBER_OF_RECIPES_LOADED_AT_ONCE
+										)
+									);
+									getSixRecipesAxios(currentlyCachedRecipesCount, dispatchLoadMore);
+								}
+							}}
+						>
+							Load more
+						</h5>
+					</div>
+				) : (
+					<></>
+				)}
 			</div>
 		</>
 	);
